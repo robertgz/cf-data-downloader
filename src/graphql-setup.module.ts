@@ -4,6 +4,7 @@ import { join } from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { SourceModule } from './source/source.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
       //   return { role };
       // },
     }),
+    SourceModule,
   ],
   controllers: [],
   providers: [],
