@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { SourceModule } from './source/source.module';
+import { ElectionModule } from './election/election.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { SourceModule } from './source/source.module';
       // },
     }),
     SourceModule,
+    ElectionModule,
   ],
   controllers: [],
   providers: [],

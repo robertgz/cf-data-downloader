@@ -1,0 +1,14 @@
+
+input ElectionInput {
+  source: String!
+  url: String!
+}
+
+type Election {
+  date: String
+  type: String # Example: Primary, General
+}
+
+type Query {
+  elections(input: ElectionInput!): [Election]
+}
