@@ -1,0 +1,33 @@
+
+input CandidatesInput {
+  electionDate: String!
+  source: String!
+  url: String!
+}
+
+type Candidate {
+  fullOfficeName: String
+
+  agency: String
+  candidateName: String
+  coeId: String
+  district: String
+  electionId: String
+  filerId: String
+  firstName: String
+  jurisdictionCode: String
+  jurisdictionId: String
+  jurisdictionName: String
+  jurisdictionType: String
+  lastName: String
+  middleName: String
+  office: String
+  officeCode: String
+  officeId: String
+  suffix: String
+  title: String
+}
+
+type Query {
+  candidates(input: CandidatesInput!): [Candidate]
+}
