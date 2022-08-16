@@ -7,6 +7,8 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { SourceModule } from './source/source.module';
 import { ElectionModule } from './election/election.module';
 import { CandidateModule } from './candidate/candidate.module';
+import { TransactionModule } from './transaction/transaction.module';
+
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -30,6 +32,7 @@ import { CandidateModule } from './candidate/candidate.module';
     SourceModule,
     ElectionModule,
     CandidateModule,
+    TransactionModule,
   ],
   controllers: [],
   providers: [],
