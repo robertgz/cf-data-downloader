@@ -2,13 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { AxiosResponse } from 'axios';
 import { firstValueFrom } from 'rxjs';
-
-export interface EfileElectionResults {
-  election_date: string;
-  election_id: string;
-  election_type: string;
-  internal: boolean;
-}
+import { EfileElectionResults } from './efile-models';
 
 @Injectable()
 export class EfileElectionService {

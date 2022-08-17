@@ -1,7 +1,7 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
+import { EfileElectionService } from 'src/efile/efile-election.service';
 import { SourceService } from 'src/source/source.service';
-import { EfileElectionService } from './fetchers/efile-election.service';
 
 interface ElectionInput {
   source: string;

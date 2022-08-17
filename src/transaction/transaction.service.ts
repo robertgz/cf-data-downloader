@@ -2,7 +2,7 @@ import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { randomBytes } from 'crypto';
 import { Cache } from 'cache-manager';
 import { SourceService } from '../source/source.service';
-import { EFileGetWorkbookService } from './fetchers/efile-transaction.service';
+import { EFileGetWorkbookService } from 'src/efile/efile-transaction.service';
 
 interface TransactionYearInput {
   year: string;
