@@ -1,4 +1,4 @@
-
-type Query {
-  sources: [String]
+input Source {
+  system: String = "EFILE"
+  url: String = "https://efile.sandiego.gov"
 }

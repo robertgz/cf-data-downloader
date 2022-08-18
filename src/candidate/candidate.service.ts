@@ -1,13 +1,12 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { EfileCandidateService } from 'src/efile/efile-candidate.service';
-import { SourceService } from 'src/source/source.service';
-// import { EfileCandidateService } from './fetchers/efile-candidate.service';
+import { SourceInput } from 'src/source/source';
+import { SystemService } from 'src/system/system.service';
 
 interface CandidateInput {
   electionDate: string;
-  source: string;
-  url: string;
+  source: SourceInput;
 }
 
 export interface CandidateOutput {
@@ -37,18 +36,19 @@ export interface CandidateOutput {
 export class CandidateService {
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
-    private sourceService: SourceService,
+    private systemService: SystemService,
     private efileCandidateService: EfileCandidateService,
   ) {}
 
   public async getCandidates(
     input: CandidateInput,
   ): Promise<CandidateOutput[]> {
-    const { source, url, electionDate } = input;
+    const { source, electionDate } = input;
+    const { system, url } = source;
 
-    if (!(await this.sourceService.isSourceValid(source))) return [];
+    if (!(await this.systemService.isSystemValid(system))) return [];
 
-    if (source === 'EFILE') {
+    if (system === 'EFILE') {
       const results = await this.efileCandidateService.runDownloadCandidates(
         url,
         electionDate,
@@ -75,8 +75,8 @@ export class CandidateService {
         suffix: candidate.suffix,
         title: candidate.title,
       }));
-    } else if (source === 'NETFILE') {
-    } else if (source === 'CAMPAIGNDOCS') {
+    } else if (system === 'NETFILE') {
+    } else if (system === 'CAMPAIGNDOCS') {
     }
 
     return [];

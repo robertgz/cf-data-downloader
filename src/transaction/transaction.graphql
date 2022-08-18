@@ -1,13 +1,11 @@
 
 input TransactionYearInput {
   year: String!
-  source: String!
-  url: String!
+  source: Source!
 }
 
 type TransactionsFile {
   url: String
-  # expiresAt: String
 }
 
 type Query {

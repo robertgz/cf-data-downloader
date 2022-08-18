@@ -1,7 +1,6 @@
 
 input ElectionInput {
-  source: String!
-  url: String!
+  source: Source!
 }
 
 type Election {

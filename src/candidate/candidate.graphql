@@ -1,8 +1,7 @@
 
 input CandidatesInput {
   electionDate: String!
-  source: String!
-  url: String!
+  source: Source!
 }
 
 type Candidate {

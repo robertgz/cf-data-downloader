@@ -8,11 +8,11 @@ import { EfileElectionResults } from './efile-models';
 export class EfileElectionService {
   constructor(private httpService: HttpService) {}
 
-  private defaultUrlPrefix = `https://efile.sandiego.gov/api/v1/public`;
+  private apiPath = `api/v1/public`;
   private urlPath = `campaign-search/election/list`;
 
-  async runDownloadElections(urlPrefix: string = this.defaultUrlPrefix) {
-    const url = `${urlPrefix}/${this.urlPath}`;
+  async runDownloadElections(urlPrefix: string) {
+    const url = `${urlPrefix}/${this.apiPath}/${this.urlPath}`;
     try {
       return await this.downloadElections(url);
     } catch {

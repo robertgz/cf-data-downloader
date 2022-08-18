@@ -12,13 +12,10 @@ export class EfileCandidateService {
     private efileElectionService: EfileElectionService,
   ) {}
 
-  private defaultUrlPrefix = `https://efile.sandiego.gov/api/v1/public`;
+  private apiPath = `api/v1/public`;
   private urlPath = `campaign-search/candidate/list`;
 
-  public async runDownloadCandidates(
-    urlPrefix: string = this.defaultUrlPrefix,
-    electionDate: string,
-  ) {
+  public async runDownloadCandidates(urlPrefix: string, electionDate: string) {
     const elections = await this.efileElectionService.runDownloadElections(
       urlPrefix,
     );
@@ -28,7 +25,7 @@ export class EfileCandidateService {
     );
     if (!election.election_id) return [];
 
-    const url = `${urlPrefix}/${this.urlPath}/${election.election_id}`;
+    const url = `${urlPrefix}/${this.apiPath}/${this.urlPath}/${election.election_id}`;
 
     const offices = await this.downloadOffices(url);
 

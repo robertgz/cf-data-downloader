@@ -13,19 +13,16 @@ import {
 export class EFileGetWorkbookService {
   constructor(private httpService: HttpService) {}
 
-  private defaultUrlPrefix = `https://efile.sandiego.gov/api/v1/public`;
+  private apiPath = `api/v1/public`;
   private urlPath = `campaign-bulk-export-url`;
 
   public async getFileBuffer(year, url): Promise<ArrayBuffer> {
     return await firstValueFrom(this.getFile(year, url));
   }
 
-  private getFile(
-    year: string,
-    urlPrefix: string = this.defaultUrlPrefix,
-  ): Observable<ArrayBuffer> {
+  private getFile(year: string, urlPrefix: string): Observable<ArrayBuffer> {
     const mostRecent = false;
-    const requestUrl = `${urlPrefix}/${this.urlPath}?year=${year}&most_recent_only=${mostRecent}`;
+    const requestUrl = `${urlPrefix}/${this.apiPath}/${this.urlPath}?year=${year}&most_recent_only=${mostRecent}`;
 
     return of(requestUrl).pipe(
       mergeMap((url) => this.getDownloadURL(url)),
