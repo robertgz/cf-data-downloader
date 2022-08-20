@@ -4,6 +4,7 @@ import { join } from 'path';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { AgencyModule } from './agency/agency.module';
 import { SystemModule } from './system/system.module';
 import { ElectionModule } from './election/election.module';
 import { CandidateModule } from './candidate/candidate.module';
@@ -29,6 +30,7 @@ import { TransactionModule } from './transaction/transaction.module';
       //   return { role };
       // },
     }),
+    AgencyModule,
     SystemModule,
     ElectionModule,
     CandidateModule,

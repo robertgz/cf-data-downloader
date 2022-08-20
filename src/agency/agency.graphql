@@ -1,0 +1,12 @@
+
+input AgencyInput {
+  source: Source!
+}
+
+type Agency {
+  name: String
+}
+
+type Query {
+  agency(input: AgencyInput): Agency
+}
