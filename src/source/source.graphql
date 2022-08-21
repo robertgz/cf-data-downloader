@@ -1,4 +1,4 @@
 input Source {
   system: String = "EFILE"
-  url: String = "https://efile.sandiego.gov"
+  url: String = "https://efile.sandiego.gov/public/"
 }
