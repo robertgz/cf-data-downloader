@@ -1,6 +1,6 @@
 import { HttpModule } from '@nestjs/axios';
 import { CacheModule, Module } from '@nestjs/common';
-import { EFileModule } from 'src/efile/efile.module';
+import { EFileModule } from 'src/software/efile/efile.module';
 import { ElectionModule } from 'src/election/election.module';
 import { SystemModule } from 'src/system/system.module';
 import { CandidateResolver } from './candidate.resolver';

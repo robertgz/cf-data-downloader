@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { EfileUrlService } from 'src/efile/efile-url.service';
-import { EfileSoftwareService } from 'src/efile/efile-software.service';
+import { EfileUrlService } from 'src/software/efile/efile-url.service';
+import { EfileSoftwareService } from 'src/software/efile/efile-software.service';
 
 @Injectable()
 export class SoftwareService {

@@ -1,6 +1,6 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
-import { EfileElectionService } from 'src/efile/efile-election.service';
+import { EfileElectionService } from 'src/software/efile/efile-election.service';
 import { SourceInput } from 'src/source/source';
 import { SystemService } from 'src/system/system.service';
 
