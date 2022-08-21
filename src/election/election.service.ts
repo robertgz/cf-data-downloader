@@ -1,11 +1,12 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache } from 'cache-manager';
 import { EfileElectionService } from 'src/software/efile/efile-election.service';
+import { EfileUrlService } from 'src/software/efile/efile-url.service';
 import { SourceInput } from 'src/source/source';
-import { SystemService } from 'src/system/system.service';
 
 interface ElectionInput {
   source: SourceInput;
+  software: string;
 }
 
 export interface ElectionOutput {
@@ -17,25 +18,32 @@ export interface ElectionOutput {
 export class ElectionService {
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
-    private systemService: SystemService,
     private efileElectionService: EfileElectionService,
+    private efileUrlService: EfileUrlService,
   ) {}
 
   public async getElections(input: ElectionInput): Promise<ElectionOutput[]> {
-    const { source } = input;
-    const { system, url } = source;
+    const { source, software } = input;
+    const { url } = source;
 
-    if (!(await this.systemService.isSystemValid(system))) return [];
+    switch (software) {
+      case 'EFILE':
+        const baseUrl = await this.efileUrlService.getBaseUrl(url);
+        const results = await this.efileElectionService.runDownloadElections(
+          baseUrl,
+        );
 
-    if (system === 'EFILE') {
-      const results = await this.efileElectionService.runDownloadElections(url);
-
-      return results.map((election) => ({
-        date: election.election_date,
-        type: election.election_type,
-      }));
-    } else if (system === 'NETFILE') {
-    } else if (system === 'CAMPAIGNDOCS') {
+        return results.map((election) => ({
+          date: election.election_date,
+          type: election.election_type,
+        }));
+        break;
+      case 'NETFILE':
+        break;
+      case 'CAMPAIGNDOCS':
+        break;
+      default:
+        break;
     }
 
     return [];
