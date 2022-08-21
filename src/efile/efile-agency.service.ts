@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
-// import { HttpService } from '@nestjs/axios';
-// import { AxiosResponse } from 'axios';
+import { EfileUrlService } from './efile-url.service';
 
 @Injectable()
 export class EfileAgencyService {
-  // constructor(private httpService: HttpService) {}
+  constructor(private efileUrlService: EfileUrlService) {}
 
   /**
    * When a second eFile site is found this function should be
@@ -12,6 +11,8 @@ export class EfileAgencyService {
    */
   async getAgencyName(url: string): Promise<string> {
     let pageTitle;
+
+    if (!this.efileUrlService.isValidUrl(url)) return '';
 
     if (url.includes('efile.sandiego.gov')) {
       pageTitle = 'City of San Diego Electronic Filing System';
