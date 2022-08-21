@@ -5,6 +5,7 @@ input AgencyInput {
 
 type Agency {
   name: String
+  software: String
 }
 
 type Query {

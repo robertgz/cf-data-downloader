@@ -5,6 +5,7 @@ import { SourceInput } from 'src/source/source';
 
 interface AgencyInput {
   source: SourceInput;
+  software: string;
 }
 
 @Injectable()
@@ -15,13 +16,19 @@ export class AgencyService {
   ) {}
 
   public async getAgencyName(input: AgencyInput): Promise<string> {
-    const { source } = input;
-    const { system, url } = source;
+    const { source, software } = input;
+    const { url } = source;
 
-    if (system === 'EFILE') {
-      return await this.afileAgencyService.getAgencyName(url);
-    } else if (system === 'NETFILE') {
-    } else if (system === 'CAMPAIGNDOCS') {
+    switch (software) {
+      case 'EFILE':
+        return await this.afileAgencyService.getAgencyName(url);
+        break;
+      case 'NETFILE':
+        break;
+      case 'CAMPAIGNDOCS':
+        break;
+      default:
+        break;
     }
 
     return '';
