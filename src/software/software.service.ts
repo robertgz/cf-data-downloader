@@ -9,6 +9,12 @@ export class SoftwareService {
     private efileSoftwareService: EfileSoftwareService,
   ) {}
 
+  list = ['EFILE', 'NETFILE', 'CAMPAIGNDOCS'];
+
+  public async getSoftwares(): Promise<string[]> {
+    return this.list;
+  }
+
   public async getSoftware(url: string): Promise<string | null> {
     if (this.efileUrlService.isValidUrl(url)) {
       return this.efileSoftwareService.getSoftwareName(url);
