@@ -9,11 +9,11 @@ export class SoftwareService {
     private efileSoftwareService: EfileSoftwareService,
   ) {}
 
-  public async getSoftware(url: string): Promise<string> {
+  public async getSoftware(url: string): Promise<string | null> {
     if (this.efileUrlService.isValidUrl(url)) {
       return this.efileSoftwareService.getSoftwareName(url);
     }
 
-    return '';
+    return null;
   }
 }
